@@ -65,7 +65,7 @@ if __name__ == "__main__":
             fieldnames.append(os.path.basename(args.geotiff_file))
         elif args.geotiff_dir != None and len(os.listdir(args.geotiff_dir)) > 0 :
             for filename in os.listdir(args.geotiff_dir):
-                if re.search('(.*).tif', filename):
+                if re.search('(.*).tif$', filename):
                     fieldnames.append(filename)
                     files.append(os.path.join(args.geotiff_dir,filename))
         else:
