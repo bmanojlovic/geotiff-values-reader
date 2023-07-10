@@ -94,7 +94,7 @@ After download sample files run code with single file:
 ### output.csv file would be populated in manner shown bellow
 
 |id|cellcode|x_3035|y_3035|longitude|latitude|CHELSA_tasmax_11_1986_V.2.1.tif|CHELSA_tasmax_09_2000_V.2.1.tif|
-|----|----|----|----|----|----|
+|----|----|----|----|----|----|----|
 |39071|1kmE5137N2268|5137500|2268500|20.0234472946833|43.0328166857817|4.9|15.0|
 |39073|1kmE5137N2270|5137500|2270500|20.0265023343479|43.0506894324026|5.8|15.9|
 |39074|1kmE5137N2271|5137500|2271500|20.028030781767|43.059625652453|5.7|15.8|
