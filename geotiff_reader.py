@@ -72,7 +72,7 @@ if __name__ == "__main__":
             print ('no can do')
 
         csv_reader = csv.DictReader(points_file, delimiter=',', quotechar='"')
-        csv_writer = csv.DictWriter(csv_output, fieldnames=fieldnames)
+        csv_writer = csv.DictWriter(csv_output, fieldnames=fieldnames,dialect=csv.unix_dialect)
         csv_writer.writeheader()
         cr = {}
         for filename in files:
@@ -80,7 +80,7 @@ if __name__ == "__main__":
             
         for row in csv_reader:
             for file in files:
-                row[os.path.basename(file)] = round(cr[file].read_value_at(float(row['latitude']), float(row['longitude']))/10 - 273.4,5)
+                row[os.path.basename(file)] = round(cr[file].read_value_at(float(row['latitude']), float(row['longitude'])),5)
             csv_writer.writerow(row)
 
         

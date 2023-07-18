@@ -2,7 +2,7 @@
 
 This python library is used to extract information from [CHELSA – Free climate data at high resolution](https://chelsa-climate.org/) provided files, but really it is not limited to just reading values from those files.
 
-Currently it is hardcoded for temperature in Celsiuses if it is run from command line.
+~~Currently it is hardcoded for temperature in Celsiuses if it is run from command line.~~
 
 Library if imported will NOT change values in any ways possible.
 
