@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 from osgeo import gdal, ogr
 from pprint import pprint
 import csv
@@ -32,12 +32,13 @@ class ChelsaReader:
             self.dataset = None
             return None
     
-    def read_value_at(self, latitude, longitude):
+    def read_value_at(self, latitude, longitude, band=1):
         # Convert latitude and longitude to pixel coordinates
+        print(band)
         x = int((longitude - self.geotransform[0]) / self.geotransform[1])
         y = int((latitude - self.geotransform[3]) / self.geotransform[5])
         
-        return self.dataset.GetRasterBand(1).ReadAsArray(x, y, 1, 1)[0, 0]
+        return self.dataset.GetRasterBand(band).ReadAsArray(x, y, 1, 1)[0, 0]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process GeoTIFF file')
@@ -50,6 +51,9 @@ if __name__ == "__main__":
     parser.add_argument('-p','--points_file', type=str, required=True,
                          help='File with points columns (longitude,latitude)')
     
+    parser.add_argument('-b','--raster_band', type=int, required=False, default=1,
+                         help='Raster band in tiff file you would like to read data from')
+
     parser.add_argument('--csv_output',default="output.csv", help='')
 
     args = parser.parse_args()
@@ -80,7 +84,7 @@ if __name__ == "__main__":
             
         for row in csv_reader:
             for file in files:
-                row[os.path.basename(file)] = round(cr[file].read_value_at(float(row['latitude']), float(row['longitude'])),5)
+                row[os.path.basename(file)] = round(cr[file].read_value_at(float(row['latitude']), float(row['longitude']),args.raster_band),5)
             csv_writer.writerow(row)
 
         
